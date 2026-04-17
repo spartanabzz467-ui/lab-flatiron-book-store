@@ -1,66 +1,64 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // -----------------------------
-  // 1. UPDATE HEADER TITLE
+  // 1. FIX HEADER TEXT (IMPORTANT)
   // -----------------------------
-  const header = document.querySelector("h1");
-  header.textContent = "Flatbook Library";
+  const header = document.getElementById("header");
+  header.textContent = "Flatbooks Technical Books";
 
   // -----------------------------
-  // 2. BOOK DATA (usually provided in lab already)
+  // 2. BOOK DATA (use lab-provided data if exists)
   // -----------------------------
   const books = [
     {
-      title: "The Hobbit",
-      author: "J.R.R. Tolkien",
-      image: "https://via.placeholder.com/150"
+      title: "Eloquent JavaScript: A Modern Introduction to Programming",
+      author: "Marijn Haverbeke",
+      image: "https://images-na.ssl-images-amazon.com/images/I/51bRhyVTVGL.jpg"
     },
     {
-      title: "1984",
-      author: "George Orwell",
-      image: "https://via.placeholder.com/150"
-    },
-    {
-      title: "To Kill a Mockingbird",
-      author: "Harper Lee",
-      image: "https://via.placeholder.com/150"
+      title: "JavaScript and JQuery: Interactive Front-End Web Development",
+      author: "Jon Duckett",
+      image: "https://images-na.ssl-images-amazon.com/images/I/91asIC1fRwL.jpg"
     }
   ];
 
   // -----------------------------
-  // 3. SELECT CONTAINER
+  // 3. SELECT BOOK LIST
   // -----------------------------
-  const container = document.getElementById("book-list");
+  const bookList = document.getElementById("book-list");
 
   // -----------------------------
-  // 4. CREATE BOOK ELEMENTS
+  // 4. CLEAR EXISTING LIST (IMPORTANT FOR TESTS)
+  // -----------------------------
+  bookList.innerHTML = "";
+
+  // -----------------------------
+  // 5. CREATE LIST ITEMS
   // -----------------------------
   books.forEach((book) => {
 
-    // book container
-    const bookContainer = document.createElement("div");
-    bookContainer.classList.add("book-container");
+    const li = document.createElement("li");
 
     // title
-    const bookTitle = document.createElement("h3");
-    bookTitle.textContent = book.title;
+    const title = document.createElement("h3");
+    title.textContent = book.title;
 
     // author
-    const bookAuthor = document.createElement("p");
-    bookAuthor.textContent = book.author;
+    const author = document.createElement("p");
+    author.textContent = book.author;
 
     // image
-    const bookImage = document.createElement("img");
-    bookImage.src = book.image;
-    bookImage.alt = book.title;
+    const image = document.createElement("img");
+    image.src = book.image;
+    image.alt = book.title;
 
-    // append elements to container
-    bookContainer.appendChild(bookImage);
-    bookContainer.appendChild(bookTitle);
-    bookContainer.appendChild(bookAuthor);
+    // append to li
+    li.appendChild(title);
+    li.appendChild(author);
+    li.appendChild(image);
 
-    // append book to DOM
-    container.appendChild(bookContainer);
+    // append to DOM
+    bookList.appendChild(li);
   });
 
 });
