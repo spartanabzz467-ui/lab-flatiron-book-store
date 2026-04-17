@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // FIX HEADER
   const header = document.getElementById("header");
   header.textContent = "Flatbooks Technical Books";
 
-  // BOOK DATA (MUST include ALL books including Cracking the Coding Interview)
   const books = [
     {
       title: "Eloquent JavaScript: A Modern Introduction to Programming",
@@ -25,21 +23,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const bookList = document.getElementById("book-list");
 
-  // CLEAR LIST
   bookList.innerHTML = "";
 
   books.forEach((book) => {
 
     const li = document.createElement("li");
 
-    // IMPORTANT: tests expect TEXT inside li
-    li.textContent = `${book.title} - ${book.author}`;
-
-    // image MUST exist in DOM
+    // ADD IMAGE FIRST (IMPORTANT FOR TESTS)
     const img = document.createElement("img");
     img.src = book.image;
     img.alt = book.title;
 
+    // ADD TEXT (do NOT overwrite li content)
+    const title = document.createTextNode(book.title + " - " + book.author);
+
+    li.appendChild(title);
     li.appendChild(img);
 
     bookList.appendChild(li);
