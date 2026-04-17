@@ -1,14 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // -----------------------------
-  // 1. FIX HEADER TEXT (IMPORTANT)
-  // -----------------------------
+  // FIX HEADER
   const header = document.getElementById("header");
   header.textContent = "Flatbooks Technical Books";
 
-  // -----------------------------
-  // 2. BOOK DATA (use lab-provided data if exists)
-  // -----------------------------
+  // BOOK DATA (MUST include ALL books including Cracking the Coding Interview)
   const books = [
     {
       title: "Eloquent JavaScript: A Modern Introduction to Programming",
@@ -19,45 +15,33 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "JavaScript and JQuery: Interactive Front-End Web Development",
       author: "Jon Duckett",
       image: "https://images-na.ssl-images-amazon.com/images/I/91asIC1fRwL.jpg"
+    },
+    {
+      title: "Cracking the Coding Interview",
+      author: "Gayle Laakmann McDowell",
+      image: "https://images-na.ssl-images-amazon.com/images/I/41y1p7o1gQL.jpg"
     }
   ];
 
-  // -----------------------------
-  // 3. SELECT BOOK LIST
-  // -----------------------------
   const bookList = document.getElementById("book-list");
 
-  // -----------------------------
-  // 4. CLEAR EXISTING LIST (IMPORTANT FOR TESTS)
-  // -----------------------------
+  // CLEAR LIST
   bookList.innerHTML = "";
 
-  // -----------------------------
-  // 5. CREATE LIST ITEMS
-  // -----------------------------
   books.forEach((book) => {
 
     const li = document.createElement("li");
 
-    // title
-    const title = document.createElement("h3");
-    title.textContent = book.title;
+    // IMPORTANT: tests expect TEXT inside li
+    li.textContent = `${book.title} - ${book.author}`;
 
-    // author
-    const author = document.createElement("p");
-    author.textContent = book.author;
+    // image MUST exist in DOM
+    const img = document.createElement("img");
+    img.src = book.image;
+    img.alt = book.title;
 
-    // image
-    const image = document.createElement("img");
-    image.src = book.image;
-    image.alt = book.title;
+    li.appendChild(img);
 
-    // append to li
-    li.appendChild(title);
-    li.appendChild(author);
-    li.appendChild(image);
-
-    // append to DOM
     bookList.appendChild(li);
   });
 
