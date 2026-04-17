@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // FIX HEADER
   const header = document.getElementById("header");
   header.textContent = "Flatbooks Technical Books";
 
+  // BOOK DATA (must include ALL books)
   const books = [
     {
       title: "Eloquent JavaScript: A Modern Introduction to Programming",
@@ -23,22 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const bookList = document.getElementById("book-list");
 
+  // CLEAR EXISTING CONTENT
   bookList.innerHTML = "";
 
-  books.forEach((book) => {
+  books.forEach(book => {
 
     const li = document.createElement("li");
 
-    // ADD IMAGE FIRST (IMPORTANT FOR TESTS)
-    const img = document.createElement("img");
-    img.src = book.image;
-    img.alt = book.title;
-
-    // ADD TEXT (do NOT overwrite li content)
-    const title = document.createTextNode(book.title + " - " + book.author);
-
-    li.appendChild(title);
-    li.appendChild(img);
+    // IMPORTANT: text first
+    li.innerHTML = `
+      <p>${book.title}</p>
+      <p>${book.author}</p>
+      <img src="${book.image}" alt="${book.title}">
+    `;
 
     bookList.appendChild(li);
   });
